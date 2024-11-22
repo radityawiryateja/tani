@@ -1,0 +1,41 @@
+header.head-wrapper {
+	height: 80px;
+}
+
+header.head-wrapper .profile-icon {
+	cursor: pointer;
+}
+
+header.head-wrapper .img-wrapper {
+	width: 32px;
+	height: 32px;
+	margin-right: 8px;
+}
+
+header.head-wrapper .img-wrapper img {
+	object-fit: cover;
+	object-position: center;
+}
+
+header.head-wrapper .profile-wrapper {
+	width: 300px;
+	border-radius: 24px;
+	right: 0;
+	transform: translateY(-15px);
+	opacity: 0;
+	transition: all 0.3s;
+	visibility: hidden;
+}
+
+header.head-wrapper .profile-wrapper.active {
+	transform: translateY(0);
+	opacity: 1;
+	visibility: visible;
+}
+
+/* media queries */
+@media (min-width: 576px) {
+	header.head-wrapper .profile-wrapper {
+		right: 21px;
+	}
+}

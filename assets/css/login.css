@@ -1,0 +1,175 @@
+/* styles.css */
+
+::-ms-reveal {
+	display: none;
+}
+
+/* typography */
+@font-face {
+	font-family: "Plus Jakarta Sans";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("../css/fonts/PlusJakartaSans-Regular.woff2") format("woff2");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+		U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+		U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+	font-family: "Plus Jakarta Sans";
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url("../css/fonts/PlusJakartaSans-SemiBold.woff2") format("woff2");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+		U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+		U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+	font-family: "Plus Jakarta Sans";
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url("../css/fonts/PlusJakartaSans-Bold.woff2") format("woff2");
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+		U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+		U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+* {
+	font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0px 1000px white inset !important;
+	background-color: transparent !important;
+}
+
+body {
+	font-family: "PlusJakartaSans", sans-serif;
+}
+
+.form-label {
+	font-size: 16px;
+}
+
+.form-control {
+	font-size: 14px;
+}
+
+.login-text-header {
+	font-size: 18px;
+}
+
+.login-sub-text {
+	font-size: 13px;
+}
+
+.login-app-slogan {
+	font-size: 13px;
+}
+
+.login-app-text {
+	font-size: clamp(100%, 1rem + 2.3vw, 50px);
+}
+
+#login-button {
+	font-size: 12.5px;
+	padding: 10px 20px;
+}
+
+#togglePassword {
+	border-color: #dee2e6;
+}
+
+#aside-container {
+	width: 100%;
+	height: 80vh;
+	align-items: center;
+}
+
+#form-container {
+	width: 100vw;
+}
+
+#trademark {
+	width: 100vw;
+	font-size: 11.7px;
+	margin-top: 5vh;
+}
+
+#banner-container {
+	background-image: url("../images/bg-login.png");
+	background-size: cover;
+	height: 20vh;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+@media (max-height: 499.98px) {
+	#aside-container {
+		height: fit-content;
+	}
+	#banner-container {
+		height: fit-content;
+	}
+	#form-container {
+		margin-top: 15%;
+		margin-bottom: 15%;
+	}
+}
+
+@media (min-height: 500px) and (max-width: 991.98px) {
+	#form-container {
+		margin-top: 7vh;
+	}
+}
+
+@media (min-width: 576px) {
+	#form-container {
+		width: 450px;
+		margin-top: 15%;
+		margin-bottom: 15%;
+	}
+}
+
+@media (min-width: 992px) {
+	#banner-container {
+		height: 100vh;
+		width: auto;
+	}
+	#aside-container {
+		height: 100vh;
+		width: fit-content;
+		justify-items: center;
+	}
+	#form-container {
+		width: 450px;
+	}
+	#trademark {
+		width: 450px;
+	}
+	.login-text-header {
+		font-size: 23px;
+	}
+	.login-sub-text {
+		font-size: 13px;
+	}
+}
+
+@media (min-width: 1400px) {
+	#form-container {
+		width: 600px;
+	}
+
+	#aside-container {
+		height: 100vh;
+		width: fit-content;
+	}
+
+	#trademark {
+		width: 600px;
+	}
+}
