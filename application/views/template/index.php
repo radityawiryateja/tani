@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="<?= base_url() . 'assets/plugin/select2/css/select2.min.css' ?>">
     <link rel="stylesheet" href="<?= base_url() . 'assets/plugin/select2/css/select2-bootstrap-5-theme.min.css' ?>" />
 
+	<!-- leaflet css -->
+	<link rel="stylesheet" href="<?= base_url() . 'assets/plugin/leaflet/leaflet.css' ?>" />
+
     <!-- daterangepicker css -->
     <link rel="stylesheet" href="<?= base_url() . 'assets/plugin/daterangepicker/daterangepicker.css' ?>">
 
@@ -32,6 +35,9 @@
 
     <!-- select2 js -->
     <script src="<?= base_url() . 'assets/plugin/select2/js/select2.min.js' ?>"></script>
+
+	<!-- leaflet js -->
+	<script src="<?= base_url() . 'assets/plugin/leaflet/leaflet.js' ?>"></script>
 
     <!-- syncfusion chart js -->
     <?php if (isset($syncfusion_chart)) : ?>
