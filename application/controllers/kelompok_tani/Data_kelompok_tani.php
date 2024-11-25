@@ -125,95 +125,71 @@ class Data_kelompok_tani extends CI_Controller
 			exit;
 		}
 
-		// if (!empty($_FILES['sk_pengukuhan']['name'])) {
-		// 	if ($id != '') {
-		// 		$old_file = $this->db->select('sk_pengukuhan')
-		// 			->get_where('kel_tani', ['id' => $id])
-		// 			->row()->sk_pengukuhan;
-	
-		// 		if ($old_file) {
-		// 			$delete_success = $this->minio_library->delete($old_file);
-	
-		// 			if (!$delete_success) {
-		// 				echo json_encode([
-		// 					'status' => false,
-		// 					'message' => 'Gagal menghapus file lama'
-		// 				]);
-		// 				exit;
-		// 			}
-		// 		}
-		// 	}
-	
-		// 	$validation_result = validate_sk_upload('sk_pengukuhan');
-	
-		// 	if (!$validation_result['status']) {
-		// 		echo json_encode([
-		// 			'status' => false,
-		// 			'message' => $validation_result['message']
-		// 		]);
-		// 		exit;
-		// 	}
-	
-		// 	$fileTmpName = $validation_result['file_tmp_name'];
-		// 	$fileName = uniqid() . '.' . pathinfo($validation_result['file_name'], PATHINFO_EXTENSION);
-	
-		// 	$upload_success = $this->minio_library->upload($fileTmpName, $fileName);
-	
-		// 	if (!$upload_success) {
-		// 		echo json_encode([
-		// 			'status' => false,
-		// 			'message' => 'Gagal mengunggah file'
-		// 		]);
-		// 		exit;
-		// 	}
-	
-		// 	$sk_pengukuhan = $fileName;
-		// }
+		if (!empty($_FILES['sk_pengukuhan']['name'])) {
+            $this->load->helper('file_upload');
+            $file_path = './public/file/sk-pengukuhan';
 
-		// if (!empty($_FILES['sk_terdaftar']['name'])) {
-		// 	if ($id != '') {
-		// 		$old_file = $this->db->select('sk_terdaftar')
-		// 			->get_where('kel_tani', ['id' => $id])
-		// 			->row()->sk_terdaftar;
-	
-		// 		if ($old_file) {
-		// 			$delete_success = $this->minio_library->delete($old_file);
-	
-		// 			if (!$delete_success) {
-		// 				echo json_encode([
-		// 					'status' => false,
-		// 					'message' => 'Gagal menghapus file lama'
-		// 				]);
-		// 				exit;
-		// 			}
-		// 		}
-		// 	}
-	
-		// 	$validation_result = validate_sk_upload('sk_terdaftar');
-	
-		// 	if (!$validation_result['status']) {
-		// 		echo json_encode([
-		// 			'status' => false,
-		// 			'message' => $validation_result['message']
-		// 		]);
-		// 		exit;
-		// 	}
-	
-		// 	$fileTmpName = $validation_result['file_tmp_name'];
-		// 	$fileName = uniqid() . '.' . pathinfo($validation_result['file_name'], PATHINFO_EXTENSION);
-	
-		// 	$upload_success = $this->minio_library->upload($fileTmpName, $fileName);
-	
-		// 	if (!$upload_success) {
-		// 		echo json_encode([
-		// 			'status' => false,
-		// 			'message' => 'Gagal mengunggah file'
-		// 		]);
-		// 		exit;
-		// 	}
-	
-		// 	$sk_terdaftar = $fileName;
-		// }
+            if ($id != '') {
+                $old_file = $this->db->select('sk_pengukuhan')
+                    ->get_where('kel_tani', ['id' => $id])
+                    ->row()->sk_pengukuhan;
+
+                if ($old_file) {
+                    $file_full_path = $file_path . '/' . $old_file;
+
+                    var_dump($file_full_path);
+                    exit();
+                    if (file_exists($file_full_path)) {
+                        unlink($file_full_path);
+                    }
+                }
+            }
+
+            $file_sk_pengukuhan = single_pdf_upload('sk_pengukuhan', $file_path);
+
+            if (!$file_sk_pengukuhan['status']) {
+                echo json_encode([
+                    'status' => false,
+                    'message' => $file_sk_pengukuhan['info']
+                ]);
+                exit;
+            }
+
+			$sk_pengukuhan = $file_sk_pengukuhan['info'];
+        }
+
+		if (!empty($_FILES['sk_terdaftar']['name'])) {
+            $this->load->helper('file_upload');
+            $file_path = './public/file/sk-terdaftar';
+
+            if ($id != '') {
+                $old_file = $this->db->select('sk_terdaftar')
+                    ->get_where('kel_tani', ['id' => $id])
+                    ->row()->sk_terdaftar;
+
+                if ($old_file) {
+                    $file_full_path = $file_path . '/' . $old_file;
+
+                    var_dump($file_full_path);
+                    exit();
+                    if (file_exists($file_full_path)) {
+                        unlink($file_full_path);
+                    }
+                }
+            }
+
+            $file_sk_terdaftar = single_pdf_upload('sk_terdaftar', $file_path);
+
+            if (!$file_sk_terdaftar['status']) {
+                echo json_encode([
+                    'status' => false,
+                    'message' => $file_sk_terdaftar['info']
+                ]);
+                exit;
+            }
+
+			$sk_terdaftar = $file_sk_terdaftar['info'];
+        }
 
 		$data = [
 			'id_kecamatan' => $id_kecamatan,
