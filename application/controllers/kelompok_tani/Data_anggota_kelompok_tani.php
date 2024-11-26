@@ -24,7 +24,7 @@ class Data_anggota_kelompok_tani extends CI_Controller
 			redirect('');
 		}
 
-		$id_kel_tani = $this->input->post('id_kel_tani');
+		$id_kel_tani = $this->input->get('id_kel_tani');
 		if (!$id_kel_tani) {
 			show_404();
 		}
@@ -42,7 +42,7 @@ class Data_anggota_kelompok_tani extends CI_Controller
 		$data = [
 			'kel_tani' => $kel_tani,
 			'id_kel_tani' => $id_kel_tani,
-			'view' => 'pages/kelompok_tani/data_kelompok_tani/data_anggota_kel_tani/index',
+			'view' => 'pages/kelompok_tani/data_kelompok_tani/data_anggota_kelompok_tani/index',
 			'active' => 'kelompok_tani',
 			'sub' => 'data_kelompok_tani'
 		];
@@ -89,7 +89,7 @@ class Data_anggota_kelompok_tani extends CI_Controller
 			],
 			'group_by' => [],
 			'where' => $where,
-			'base_url' => base_url() . 'kelompok_tani/data_kelompok_tani/data_anggota_kel_tani/index'
+			'base_url' => base_url() . 'kelompok_tani/data_kelompok_tani/data_anggota_kelompok_tani/index'
 		];
 
 		$table = DataTableHandler::getInstance($config);
