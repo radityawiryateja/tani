@@ -323,6 +323,9 @@
 									
 					$('input[name="id"]').val(response.id);
 					$('#id_anggota_kel_tani, #id_anggota_kel_tani_hidden').val(response.id_anggota_kel_tani);
+					$('#luas_tanam').val(response.luas_tanam);
+					$('#tgl_tanam').val(response.tgl_tanam);
+					$('#estimasi_tgl_panen').val(response.estimasi_tgl_panen);
 					$('#tgl_panen').val(response.tgl_panen);
 					$('#luas_panen').val(response.luas_panen);
 					$('#total_produksi').val(response.total_produksi);
@@ -339,9 +342,11 @@
 					.removeAttr('disabled').removeAttr('hidden')
 					.prev('label').removeAttr('hidden');
 					
-					$('#luas_tanam, #tgl_tanam, #estimasi_tgl_panen, #status_hidden')
-					.attr({ disabled: true, hidden: true })
+					$('#luas_tanam, #tgl_tanam, #estimasi_tgl_panen')
+					.attr('hidden', true)
 					.prev('label').attr('hidden', true); 
+
+					$('#status_hidden').attr('disabled', true);
 				}
 			})
 		}, 'json')
@@ -372,7 +377,8 @@
 						true, 
 						true 
 					);
-					
+
+					$('#id_anggota_kel_tani').find('option').remove();
 					$('#id_anggota_kel_tani').append(selectedOption).trigger('change');
 
 					$('input[name="id"]').val(response.id);
@@ -386,8 +392,8 @@
 					$('#id_anggota_kel_tani').removeAttr('disabled');
 					$('#id_anggota_kel_tani_hidden').attr('disabled', true);
 
-					$('#id_anggota_kel_tani, #luas_tanam, #tgl_tanam, #estimasi_tgl_panen, #status_hidden')
-					.removeAttr( 'disabled').removeAttr('hidden')
+					$('#luas_tanam, #tgl_tanam, #estimasi_tgl_panen, #status_hidden')
+					.removeAttr('disabled').removeAttr('hidden')
 					.prev('label').removeAttr('hidden');
 
 					$('#tgl_panen, #luas_panen, #total_produksi, #harga_bersih, #harga_kotor, #harga_borongan, #status')
@@ -411,6 +417,7 @@
 			modalContext: 'Data Tanam',
             beforeModalShow: () => {
 				selectUser()
+				$('#id_anggota_kel_tani').empty();
 			
 				$('label[for="password"] span.text-danger').show()
 
