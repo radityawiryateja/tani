@@ -115,9 +115,11 @@ class Input_tanam_panen extends CI_Controller
 		$harga_borongan = $this->input->post('harga_borongan', true);
 		$status = $this->input->post('status', true);
 
-		$id_kecamatan = $this->db->get_where('anggota_kel_tani', ['id' => $id_anggota_kel_tani])->row()->id_kecamatan;
-		$id_desa = $this->db->get_where('anggota_kel_tani', ['id' => $id_anggota_kel_tani])->row()->id_desa;
-		$id_kel_tani = $this->db->get_where('anggota_kel_tani', ['id' => $id_anggota_kel_tani])->row()->id_kel_tani;
+		if(!empty($id_anggota_kel_tani)){
+			$id_kecamatan = $this->db->get_where('anggota_kel_tani', ['id' => $id_anggota_kel_tani])->row()->id_kecamatan;
+			$id_desa = $this->db->get_where('anggota_kel_tani', ['id' => $id_anggota_kel_tani])->row()->id_desa;
+			$id_kel_tani = $this->db->get_where('anggota_kel_tani', ['id' => $id_anggota_kel_tani])->row()->id_kel_tani;
+		}
 
 		$is_valid_request = $this->validate_request();
 

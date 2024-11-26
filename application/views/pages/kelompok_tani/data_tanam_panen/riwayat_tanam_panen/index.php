@@ -99,13 +99,6 @@
 				</ol>
 			</nav>
         </div>
-        <?php if ($_SESSION['akses']->m_kel_tani == 1) : ?>
-            <div class="col-md-4 text-md-end">
-                <button onclick="createNewData()" class="btn btn-primary"><i class="ph ph-plus-circle fs-4 align-middle me-1"></i>
-                    <span class="align-middle">Tambah data tanam</span>
-				</button>
-            </div>
-        <?php endif; ?>
     </div>
 </header>
 
@@ -228,7 +221,7 @@
 					<td>${val.nama_anggota ? val.nama_anggota : '-'}</td>
 					<td>${val.luas_tanam ? val.luas_tanam : '-'}</td>
 					<td>${val.tgl_tanam ? val.tgl_tanam : '-'}</td>
-					<td>${val.tgl_panen ? tgl_panen : '-'}</td>
+					<td>${val.tgl_panen ? val.tgl_panen : '-'}</td>
 					<td>${val.total_produksi ? val.total_produksi : '-'}</td>
 					<td>${val.harga_bersih ? val.harga_bersih : '-'}</td>
 					<td>${val.harga_kotor ? val.harga_kotor : '-'}</td>
@@ -307,7 +300,7 @@
 			hideLoading()
 			openModal({
 				state: 'update',
-				modalContext: 'Data Tanam',
+				modalContext: 'Riwayat Data Tanam Panen',
 				onUpdateOpen: () => {
 					selectUser()
 
@@ -318,6 +311,7 @@
 						true 
 					);
 					
+					$('#id_anggota_kel_tani').find('option').remove();
 					$('#id_anggota_kel_tani').append(selectedOption).trigger('change');
 
 					$('input[name="id"]').val(response.id);
@@ -351,28 +345,6 @@
 			})
 		});
 
-    }
-
-    const createNewData = () => {
-        openModal({
-			modalContext: 'Data Tanam',
-            beforeModalShow: () => {
-				selectUser()
-			
-				$('label[for="password"] span.text-danger').show()
-
-				$('#id_anggota_kel_tani').removeAttr('disabled');
-				$('#id_anggota_kel_tani_hidden').attr('disabled', true);
-
-				$('#luas_tanam, #tgl_tanam, #estimasi_tgl_panen, #status_hidden')
-				.removeAttr('disabled').removeAttr('hidden')
-				.prev('label').removeAttr('hidden');
-
-				$('#tgl_panen, #luas_panen, #total_produksi, #harga_bersih, #harga_kotor, #harga_borongan, #status')
-    			.attr({ disabled: true, hidden: true })
-				.prev('label').attr('hidden', true);;
-			}
-        })
     }
 
     const deleteRow = (requestURL, id) => {
