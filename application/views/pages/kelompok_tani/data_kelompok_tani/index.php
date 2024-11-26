@@ -71,7 +71,7 @@
 
 					<div class="mb-3">
 						<label for="pemasaran" class="form-label">Cara Pemasaran</label>
-						<select class="select2 form-select" id="pemasaran" name="pemasaran[]" multiple="multiple">
+						<select class="form-select" id="pemasaran" name="pemasaran[]" multiple="multiple">
 							<option value="lokal">Lokal</option>
 							<option value="ekspor">Ekspor</option>
 						</select>
@@ -264,21 +264,21 @@
 			let pemasaran = val.pemasaran ? val.pemasaran.split(',') : []
 			
 			pemasaran = pemasaran.map((val) => {
-				return `<span class="badge text-bg-primary">${val}</span>`
+				return `<span class="badge text-bg-primary">${val.charAt(0).toUpperCase() + val.slice(1)}</span>`
 			}).join('&nbsp;')
 
 			if (val.exp_sk_pengukuhan && val.exp_sk_pengukuhan != '0000-00-00') {
-				const date = new Date(val.exp_sk_pengukuhan);
-				const options = { year: 'numeric', month: 'long', day: 'numeric' };
-				val.exp_sk_pengukuhan = date.toLocaleDateString('id-ID', options);
+				// const date = new Date(val.exp_sk_pengukuhan);
+				// const options = { year: 'numeric', month: 'long', day: 'numeric' };
+				// val.exp_sk_pengukuhan = date.toLocaleDateString('id-ID', options);
 			} else {
 				val.exp_sk_pengukuhan = '-'
 			}
 
 			if (val.exp_sk_terdaftar && val.exp_sk_terdaftar != '0000-00-00') {
-				const date = new Date(val.exp_sk_terdaftar);
-				const options = { year: 'numeric', month: 'long', day: 'numeric' };
-				val.exp_sk_terdaftar = date.toLocaleDateString('id-ID', options);
+				// const date = new Date(val.exp_sk_terdaftar);
+				// const options = { year: 'numeric', month: 'long', day: 'numeric' };
+				// val.exp_sk_terdaftar = date.toLocaleDateString('id-ID', options);
 			} else {
 				val.exp_sk_terdaftar = '-'
 			}
@@ -307,7 +307,7 @@
 
 			<?php if ($_SESSION['akses']->m_kel_tani == 1) : ?>
 				memberButton += `
-					<form action="<?= base_url('kelompok_tani/data_anggota_kelompok_tani') ?>" method="POST" style="display: inline;">
+					<form action="<?= base_url('kelompok_tani/data_anggota_kelompok_tani') ?>" method="GET" style="display: inline;">
 						<input type="hidden" name="id_kel_tani" value="${val.id}">
 						<button type="submit" class="btn btn-primary">
 							<i class="ph ph-users fs-5 align-middle"></i>

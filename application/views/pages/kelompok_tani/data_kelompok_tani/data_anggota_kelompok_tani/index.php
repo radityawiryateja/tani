@@ -31,7 +31,7 @@
                         <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan alamat">
                     </div>
 
-					<div class="mb-3">
+					<!-- <div class="mb-3">
 						<label for="id_kecamatan" class="form-label">Kecamatan <span class="text-danger">*</span></label>
 						<select class="form-select" id="id_kecamatan" name="id_kecamatan" disabled>
 							<option value="" selected disabled>Pilih Kecamatan</option>
@@ -41,18 +41,18 @@
 								<option value="<?= $row->id ?>"><?= $row->nama ?></option>
 							<?php } ?>
 						</select>
+					</div> -->
 
-						<input type="hidden" class="d-none" name="id_kecamatan" id="id_kecamatan_hidden" value="<?= $kel_tani->id_kecamatan ?>">
-					</div>
-
+					<input type="hidden" class="d-none" name="id_kecamatan" id="id_kecamatan_hidden" value="<?= $kel_tani->id_kecamatan ?>">
+<!-- 
 					<div class="mb-3">
 						<label for="id_desa" class="form-label">Desa <span class="text-danger">*</span></label>
 						<select class="form-select" id="id_desa" name="id_desa" disabled>
 							<option value="" selected disabled>Pilih Desa</option>
 						</select>
+					</div> -->
 
-						<input type="hidden" class="d-none" name="id_desa" id="id_desa_hidden" value="<?= $kel_tani->id_desa ?>">
-					</div>
+					<input type="hidden" class="d-none" name="id_desa" id="id_desa_hidden" value="<?= $kel_tani->id_desa ?>">
 
 					<div>
 						<div class="mb-3">
@@ -198,7 +198,7 @@
 			let pemasaran = val.pemasaran ? val.pemasaran.split(',') : []
 			
 			pemasaran = pemasaran.map((val) => {
-				return `<span class="badge text-bg-primary">${val}</span>`
+				return `<span class="badge text-bg-primary">${val.charAt(0).toUpperCase() + val.slice(1)}</span>`
 			}).join('&nbsp;')
 
             if (val.status == '0') {
@@ -311,8 +311,9 @@
 					});
 
 					$('input[name="id"]').val(response.id);
-					$('#id_kecamatan').val(response.id_kecamatan);
-					$('#id_desa').val(response.id_desa);
+					$('#id_kel_tani').val(response.id_kel_tani);
+					$('#id_kecamatan_hidden').val(response.id_kecamatan);
+					$('#id_desa_hidden').val(response.id_desa);
 					$('#nama_anggota').val(response.nama);
 					$('#no_ktp').val(response.no_ktp);
 					$('#no_hp').val(response.no_hp);
@@ -357,8 +358,6 @@
 				let id_kecamatan = '<?= $kel_tani->id_kecamatan ?>';
 				let id_desa = '<?= $kel_tani->id_desa ?>';
 
-				$('#id_kecamatan').val(id_kecamatan);
-				$('#id_desa').val(id_desa);
 				$('#id_kecamatan_hidden').val(id_kecamatan);
 				$('#id_desa_hidden').val(id_desa);
 
@@ -402,7 +401,7 @@
                         }
                     }, 'json')
                     .always(() => {
-                        dataTableInitializer.reload.tabelKelompokTani(0)
+                        dataTableInitializer.reload.tabelAnggotaKelompokTani(0)
                     })
                     .fail(() => {
                         Swal.fire({

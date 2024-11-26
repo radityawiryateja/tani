@@ -101,7 +101,7 @@
                         <?php endif ?>
 						<?php if ($_SESSION['akses']->m_kel_tani == 1) : ?>
                             <li class="second-side-item <?= isset($sub) && $sub == 'data_tanam_panen' ? 'active no-transition' : '' ?>">
-                                <a class="second-side-link" href="<?= base_url() . 'kelompok_tani/data_tanam_panen' ?>">
+                                <a class="second-side-link" href="<?= base_url() . 'kelompok_tani/input_tanam_panen' ?>">
                                     <div class="text-break">
                                         <svg class="sub-menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
                                             <path d="M156,128a28,28,0,1,1-28-28A28,28,0,0,1,156,128Z"></path>
